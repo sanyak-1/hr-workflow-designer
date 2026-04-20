@@ -6,11 +6,11 @@ A full-stack drag-and-drop workflow builder designed for HR teams to map out int
 
 You will need two terminal windows to run the frontend and the mock backend simultaneously.
 
-1. Start the Mock Database (Backend)**
+1. Start the Mock Database (Backend)
 Open a terminal in the root folder and run the JSON server to handle data persistence:
 `npx json-server --watch db.json --port 3001`
 
-2. Start the Frontend Application**
+2. Start the Frontend Application
 Open a second terminal, navigate into the frontend folder, install dependencies, and start the Vite server:
 `cd frontend`
 `npm install`
