@@ -1,0 +1,149 @@
+{
+  "automations": [
+    {
+      "id": "send_email",
+      "label": "Send Email",
+      "params": [
+        "to",
+        "subject"
+      ]
+    },
+    {
+      "id": "generate_doc",
+      "label": "Generate Document",
+      "params": [
+        "template",
+        "recipient"
+      ]
+    }
+  ],
+  "simulate": [],
+  "workflows": [
+    {
+      "id": "1",
+      "name": "Employee Leave Request",
+      "nodes": [
+        {
+          "id": "start-1",
+          "type": "startNode",
+          "position": {
+            "x": 260,
+            "y": 40
+          },
+          "data": {
+            "label": "Employee Submits Request"
+          },
+          "measured": {
+            "width": 192,
+            "height": 120
+          }
+        },
+        {
+          "id": "task-1",
+          "type": "taskNode",
+          "position": {
+            "x": -98.20035460992906,
+            "y": 199.1578014184397
+          },
+          "data": {
+            "label": "DID THIS SAVE?",
+            "assignee": "HR Team",
+            "dueDate": ""
+          },
+          "measured": {
+            "width": 208,
+            "height": 109
+          },
+          "selected": false,
+          "dragging": false
+        },
+        {
+          "id": "automated-1",
+          "type": "automatedNode",
+          "position": {
+            "x": 320.1507092198582,
+            "y": 304.7872340425532
+          },
+          "data": {
+            "label": "Send Confirmation Email",
+            "action": "send_email"
+          },
+          "measured": {
+            "width": 208,
+            "height": 138
+          },
+          "selected": false,
+          "dragging": false
+        },
+        {
+          "id": "approval-1",
+          "type": "approvalNode",
+          "position": {
+            "x": -155.2482269503546,
+            "y": 454.7872340425532
+          },
+          "data": {
+            "label": "Manager Approval",
+            "approver": "Direct Manager",
+            "autoApproveThreshold": 0
+          },
+          "measured": {
+            "width": 208,
+            "height": 140
+          },
+          "selected": true,
+          "dragging": false
+        },
+        {
+          "id": "end-1",
+          "type": "endNode",
+          "position": {
+            "x": 260,
+            "y": 640
+          },
+          "data": {
+            "label": "Request Processed",
+            "endMessage": "Your request has been processed successfully.",
+            "summaryFlag": true
+          },
+          "measured": {
+            "width": 192,
+            "height": 115
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "e-start-task",
+          "source": "start-1",
+          "target": "task-1",
+          "label": "submit"
+        },
+        {
+          "id": "e-task-auto",
+          "source": "task-1",
+          "target": "automated-1",
+          "label": "reviewed"
+        },
+        {
+          "id": "e-auto-approval",
+          "source": "automated-1",
+          "target": "approval-1",
+          "label": "notified"
+        },
+        {
+          "id": "e-approval-end",
+          "source": "approval-1",
+          "sourceHandle": "approved",
+          "target": "end-1",
+          "label": "✓ approved",
+          "style": {
+            "stroke": "#10b981"
+          }
+        }
+      ],
+      "updatedAt": "2026-04-19T08:07:55.876Z"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
